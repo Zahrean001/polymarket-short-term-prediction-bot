@@ -65,9 +65,23 @@ curl -fsS http://127.0.0.1:8800/health
 
 Di Windows, PM2 dapat dijalankan dari PowerShell dengan `npm.cmd run backend:pm2` setelah PM2 tersedia di PATH. Detail operasi dan pengumpulan evidence ada di `INSTALL_V3747_PAPER.md` serta `FORWARD_VALIDATION_PROTOCOL_V3747.md`.
 
+## Status penggunaan dan arah pengembangan
+
+Release ini sengaja masih berjalan dalam **paper mode**. Tujuannya adalah menguji kualitas sinyal, mengumpulkan evidence forward, mengevaluasi risiko, dan menyempurnakan strategi sebelum ada pertimbangan penggunaan dengan dana nyata. Paper mode menggunakan data pasar live dan settlement resmi, tetapi tidak mengirim order ke akun riil.
+
+Karena project ini open source, pengguna teknis dapat mempelajari dan memodifikasi kode untuk kebutuhan mereka sendiri, termasuk mengembangkan integrasi real-account. Namun, executor real-account tidak disediakan dalam release ini. Perubahan tersebut harus dibuat dan diuji secara mandiri oleh pengguna, dengan memahami API, autentikasi, manajemen private key, rate limit, slippage, risiko kehilangan dana, serta kewajiban dan aturan platform terkait.
+
+Dengan demikian, repository ini sebaiknya dipahami sebagai **framework riset dan paper-trading yang dapat dikembangkan**, bukan bot real-trading siap pakai. Tidak ada jaminan bahwa modifikasi ke real account akan aman, menguntungkan, atau bekerja tanpa perubahan tambahan.
+
 ## Batasan keselamatan
 
 Jangan mengaktifkan real order, synthetic/fallback data, atau automatic promotion. Variable yang harus tetap `0` tercantum di `.env.example` dan divalidasi saat startup. Hasil baseline dan target forward adalah evidence penelitian, bukan klaim performa masa depan.
+
+Jangan pernah memasukkan private key, seed phrase, password, atau credential API ke repository. Gunakan secret manager atau environment variable yang aman apabila Anda mengembangkan integrasi tambahan.
+
+## Lisensi
+
+Project ini dirilis di bawah [MIT License](LICENSE). Lisensi tersebut mengizinkan penggunaan, modifikasi, dan distribusi source code dengan tetap menyertakan pemberitahuan copyright dan lisensi. Software diberikan tanpa jaminan; pengguna bertanggung jawab penuh atas perubahan, deployment, kepatuhan, dan risiko penggunaan.
 
 ## Keputusan berdasarkan bukti terbaru
 
