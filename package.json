@@ -1,0 +1,37 @@
+{
+  "name": "polymarket-v3747-direction-only-shadow-fastgrow-paper",
+  "version": "1.0.3747",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "backend": "node server/index.js",
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "start": "node server/index.js",
+    "backend:pm2": "pm2 start ecosystem.config.cjs --update-env",
+    "backend:pm2:stop": "pm2 delete polymarket-main-v3747 polymarket-direction-observer-v3747",
+    "backend:pm2:restart": "pm2 restart polymarket-main-v3747 polymarket-direction-observer-v3747 --update-env",
+    "backend:pm2:logs": "pm2 logs polymarket-main-v3747 polymarket-direction-observer-v3747",
+    "verify:v3701:imports": "node tools/verify-v3701-imports-exist.js",
+    "verify:v3747:clean-package": "node tools/verify-v3747-clean-package.js",
+    "verify:v3747:syntax": "node tools/verify-v3747-syntax.js",
+    "verify:v3747:config": "node tools/verify-v3747-config-semantics.js",
+    "verify:v3747:frozen-core": "node tools/verify-v3747-frozen-core.js",
+    "verify:v3747:unit": "node tools/run-unit-tests.js",
+    "verify:v3747:runtime": "node tools/verify-v3747-runtime-smoke.js",
+    "verify:v3747:observer-runtime": "node tools/verify-v3747-observer-runtime-smoke.js",
+    "manifest": "node tools/build-manifest.js",
+    "verify:v3747:all": "npm run verify:v3747:config && npm run verify:v3747:frozen-core && npm run verify:v3747:syntax && npm run verify:v3747:unit && npm run verify:v3701:imports && npm run build && npm run verify:v3747:runtime && npm run verify:v3747:observer-runtime && npm run manifest && npm run verify:v3747:clean-package"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "vite": "^8.1.4",
+    "ws": "^8.21.0"
+  }
+}

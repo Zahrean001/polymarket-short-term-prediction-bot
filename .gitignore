@@ -1,0 +1,16 @@
+node_modules/
+dist/
+
+# Runtime paper state and generated evidence
+server/data-main-v3747/
+server/data-observer-v3747/
+*.log
+*.tar.gz
+
+# Local environment and editor files
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+

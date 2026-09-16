@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "v3747.baseline-evidence.1",
+  "generatedAt": "2026-07-19T00:00:00.000Z",
+  "analysisMode": "official_real_filled_unique_settlement_replay",
+  "source": {
+    "archive": "v374.6-run-data(1).zip",
+    "archiveSha256": "26e3b237e035d62ca7db9fce6a927adb9fb83ff43ec06dd80f3800a96c0de6ac",
+    "mainSignalRows": 20,
+    "mainOfficialSettlementRows": 19,
+    "syntheticDataUsed": false,
+    "proxySettlementCounted": false,
+    "sameRunReplayClaimedAsForwardProof": false
+  },
+  "baseline": {
+    "policyId": "v3745-frozen-control",
+    "samples": 19,
+    "wins": 16,
+    "losses": 3,
+    "winRatePct": 84.210526,
+    "startingEquityUsd": 40,
+    "endingEquityUsd": 45.31949913,
+    "pnlUsd": 5.31949913,
+    "stakeUsd": 111.3457357,
+    "roiPct": 4.777461,
+    "grossProfitUsd": 28.72890576,
+    "grossLossUsd": 23.40940663,
+    "profitFactor": 1.227238,
+    "maximumDrawdownPct": 32.387787,
+    "wilson95LowerPct": 62.434525
+  },
+  "lossAsymmetry": {
+    "averageWinPnlUsd": 1.79555661,
+    "averageLossPnlUsd": -7.80313554,
+    "averageWinStakeUsd": 5.52766807,
+    "averageLossStakeUsd": 7.63434888,
+    "lossStakePremiumPct": 38.1116,
+    "averageWinsErasedByOneAverageLoss": 4.345803,
+    "allLossesLaneS": true,
+    "laneSLosses": 3,
+    "meanCalibratedWinProbabilityOnWins": 0.91974346,
+    "meanCalibratedWinProbabilityOnLosses": 0.92201981,
+    "interpretation": "Observed confidence did not discriminate the three losses; a confidence-only cap is not evidence-backed."
+  },
+  "priorAntiDowngradeReplay": {
+    "observerOnly": true,
+    "executionEligible": false,
+    "samples": 16,
+    "wins": 14,
+    "losses": 2,
+    "coveragePct": 84.210526,
+    "winRatePct": 87.5,
+    "pnlUsd": 8.58928943,
+    "roiPct": 9.624913,
+    "profitFactor": 1.529478,
+    "maximumDrawdownPct": 27.825996,
+    "promotionRejected": true,
+    "rejectionReasons": [
+      "same_run_retrospective_not_forward_proof",
+      "baseline_samples_below_200",
+      "coverage_below_99_5pct",
+      "wilson_lower_below_target",
+      "three_completed_profitable_50_trade_epochs_unavailable",
+      "would_reduce_entry_count"
+    ]
+  },
+  "implementedDecision": {
+    "mainExecutionPolicy": "v3745-frozen-control",
+    "mainDirectionChanged": false,
+    "mainStakeChanged": false,
+    "mainEntryCountChanged": false,
+    "mainScanIntervalChanged": false,
+    "newComponent": "direction_only_forward_shadow_observer",
+    "automaticPromotion": false,
+    "reason": "Collect causal forward evidence for direction improvements without repeating an unproven execution downgrade."
+  },
+  "claimLimits": [
+    "Nineteen settlements are evidence of this run, not a guarantee of future win rate.",
+    "The V374.7 direction challenger has no forward production results at package-build time.",
+    "No 90-100 percent forward win-rate or profit guarantee is made."
+  ]
+}
