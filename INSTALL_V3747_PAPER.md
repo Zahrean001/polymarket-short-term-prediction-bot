@@ -9,6 +9,8 @@
 
 This package is paper-only. It has no real-order executor.
 
+For a continuously running paper session, deploy on an Ubuntu VPS with a stable network connection. Use the repository README for VPS sizing, SSH tunneling, firewall guidance, and operational monitoring. Do not copy credentials or prior runtime state into the deployment.
+
 ## Clean deployment
 
 ```bash

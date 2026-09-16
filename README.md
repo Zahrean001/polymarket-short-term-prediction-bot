@@ -65,6 +65,99 @@ curl -fsS http://127.0.0.1:8800/health
 
 Di Windows, PM2 dapat dijalankan dari PowerShell dengan `npm.cmd run backend:pm2` setelah PM2 tersedia di PATH. Detail operasi dan pengumpulan evidence ada di `INSTALL_V3747_PAPER.md` serta `FORWARD_VALIDATION_PROTOCOL_V3747.md`.
 
+## Rekomendasi deployment di VPS
+
+Untuk forward paper trading yang berjalan terus-menerus, VPS Linux biasanya lebih stabil daripada menjalankan bot dari komputer pribadi. VPS membantu menjaga koneksi WebSocket tetap aktif, mengurangi gangguan akibat sleep/restart komputer, dan menyediakan lingkungan yang lebih mudah dipantau dengan PM2.
+
+### Spesifikasi yang disarankan
+
+- Ubuntu 22.04 LTS atau lebih baru
+- Minimal 2 vCPU dan 4 GB RAM
+- Disarankan 4 vCPU dan 8 GB RAM untuk observasi yang lebih nyaman
+- SSD dengan ruang kosong yang cukup untuk state, audit, dan log
+- Koneksi internet stabil dengan latency rendah ke endpoint Polymarket
+- Swap aktif sebagai perlindungan tambahan ketika proses atau log meningkat
+
+Spesifikasi VPS tidak menjamin hasil trading yang lebih baik. VPS terutama meningkatkan **stabilitas runtime, kontinuitas koneksi, dan konsistensi pengumpulan data**. Kualitas sinyal dan profitabilitas tetap harus dibuktikan melalui forward evidence.
+
+### Instalasi dasar di Ubuntu
+
+Jalankan perintah berikut setelah masuk ke VPS:
+
+```bash
+sudo apt update
+sudo apt install -y git curl build-essential
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+sudo npm install -g pm2
+node --version
+npm --version
+pm2 --version
+```
+
+Kemudian clone dan jalankan validasi dari repository:
+
+```bash
+git clone https://github.com/Zahrean001/polymarket-short-term-prediction-bot.git
+cd polymarket-short-term-prediction-bot
+npm ci
+npm run verify:v3747:all
+npm run backend:pm2
+pm2 save
+```
+
+Pastikan kedua proses aktif:
+
+```bash
+pm2 status
+curl -fsS http://127.0.0.1:8799/health
+curl -fsS http://127.0.0.1:8800/health
+```
+
+### Operasional dan monitoring
+
+Gunakan PM2 untuk mengelola lifecycle bot:
+
+```bash
+pm2 logs polymarket-main-v3747 --lines 50
+pm2 logs polymarket-direction-observer-v3747 --lines 50
+pm2 monit
+pm2 restart polymarket-main-v3747 polymarket-direction-observer-v3747 --update-env
+pm2 save --force
+```
+
+Periksa resource VPS secara berkala:
+
+```bash
+free -h
+df -h /
+uptime
+```
+
+Jangan membiarkan `pm2 logs` terbuka tanpa batas waktu. Log yang terus bertambah dapat memenuhi disk. Gunakan rotasi log atau bersihkan log lama sesuai kebijakan operasional VPS.
+
+### Akses dashboard dengan aman
+
+Port `8799` dan `8800` sebaiknya tetap bind ke `127.0.0.1`, bukan dibuka langsung ke internet. Dari komputer lokal, gunakan SSH tunnel:
+
+```bash
+ssh -N -o ServerAliveInterval=15 -o ServerAliveCountMax=3 \
+  -L 8799:127.0.0.1:8799 \
+  -L 8800:127.0.0.1:8800 \
+  user@YOUR_VPS_HOST
+```
+
+Setelah tunnel aktif, buka `http://127.0.0.1:8799` dan `http://127.0.0.1:8800` di browser lokal. Ganti `user@YOUR_VPS_HOST` dengan akun VPS Anda sendiri; jangan menaruh password atau private key di README, source code, atau repository.
+
+### Praktik keamanan VPS
+
+- Gunakan SSH key, bukan password, untuk login rutin.
+- Nonaktifkan login root dan password SSH setelah akses key teruji.
+- Aktifkan firewall dan izinkan hanya port yang benar-benar diperlukan.
+- Simpan credential di secret manager atau environment variable pada server, bukan di Git.
+- Jangan menyalin state runtime dari release lama ke directory V374.7.
+- Uji perubahan di paper mode dan jalankan `npm run verify:v3747:all` sebelum restart PM2.
+
 ## Status penggunaan dan arah pengembangan
 
 Release ini sengaja masih berjalan dalam **paper mode**. Tujuannya adalah menguji kualitas sinyal, mengumpulkan evidence forward, mengevaluasi risiko, dan menyempurnakan strategi sebelum ada pertimbangan penggunaan dengan dana nyata. Paper mode menggunakan data pasar live dan settlement resmi, tetapi tidak mengirim order ke akun riil.
