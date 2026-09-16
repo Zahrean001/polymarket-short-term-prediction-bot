@@ -193,15 +193,6 @@ Replay filter lama terlihat lebih baik pada 16 trade, tetapi coverage hanya 84.2
 - Risk flags, Lane S, korelasi, dan stake/equity hanya menjadi telemetry; tidak memiliki fungsi block/resize di main.
 - Tidak ada promosi otomatis. Bahkan ketika gate bukti lulus, paket ini hanya menghasilkan kandidat review manual.
 
-## Rules fastgrow yang tetap identik
-
-- Scan 500 ms, hot 200 ms, ultra-hot 100 ms.
-- Maksimum 8 entry per tick dan 144 posisi aktif.
-- Lane A 8–10% dan Lane S 12–15% current realized equity.
-- Tidak ada fixed USD cap, fixed `$3` minimum, ATH lock, recovery multiplier, martingale, global cooldown, atau quality veto baru.
-- Current cash + fee reserve, actual market minimum, observed depth, FAK fill, 30% unresolved reserve, dan one-position-per-slug tetap menjadi hard constraint realistis.
-- Unfilled/rejected/proxy/observer record tidak masuk WR execution.
-
 ## Verifikasi dan deploy
 
 ```bash

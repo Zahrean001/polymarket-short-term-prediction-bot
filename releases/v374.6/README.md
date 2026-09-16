@@ -33,15 +33,6 @@ Replay shadow causal terhadap settlement yang sama menghasilkan 17 trade, WR 88.
 - Semua hipotesis tersebut `observerOnly=true`, `executionEligible=false`, dan `automaticPromotion=false`.
 - Runtime menolak synthetic book/price, simulated latency, non-official settlement, real execution, shared role-state path, shadow execution, atau auto-promotion.
 
-## Rules yang tetap dipertahankan
-
-- Paper-only dan real-market-data-only.
-- Fast scan 500/200/100 ms; tidak ada global cooldown/freeze baru.
-- Lane A 8–10% dan Lane S 12–15% current realized equity.
-- Tidak ada fixed USD cap, fixed `$3` minimum, ATH lock, recovery multiplier, atau martingale.
-- Actual market minimum, current cash+fee, observed depth, slippage, 30% unresolved reserve, dan one-position-per-slug tetap hard constraint.
-- Unfilled/rejected/proxy/observer record tidak masuk WR atau execution history.
-
 Tidak ada software yang dapat menjamin profit atau WR 80% pada data forward. Paket ini mencegah downgrade yang belum terbukti dan mengumpulkan bukti yang cukup sebelum perubahan performa diizinkan.
 
 ## Verifikasi dan deploy
