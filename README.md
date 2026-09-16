@@ -69,16 +69,7 @@ Di Windows, PM2 dapat dijalankan dari PowerShell dengan `npm.cmd run backend:pm2
 
 Untuk forward paper trading yang berjalan terus-menerus, VPS Linux biasanya lebih stabil daripada menjalankan bot dari komputer pribadi. VPS membantu menjaga koneksi WebSocket tetap aktif, mengurangi gangguan akibat sleep/restart komputer, dan menyediakan lingkungan yang lebih mudah dipantau dengan PM2.
 
-### Spesifikasi yang disarankan
-
-- Ubuntu 22.04 LTS atau lebih baru
-- Minimal 2 vCPU dan 4 GB RAM
-- Disarankan 4 vCPU dan 8 GB RAM untuk observasi yang lebih nyaman
-- SSD dengan ruang kosong yang cukup untuk state, audit, dan log
-- Koneksi internet stabil dengan latency rendah ke endpoint Polymarket
-- Swap aktif sebagai perlindungan tambahan ketika proses atau log meningkat
-
-Spesifikasi VPS tidak menjamin hasil trading yang lebih baik. VPS terutama meningkatkan **stabilitas runtime, kontinuitas koneksi, dan konsistensi pengumpulan data**. Kualitas sinyal dan profitabilitas tetap harus dibuktikan melalui forward evidence.
+VPS terutama meningkatkan **stabilitas runtime, kontinuitas koneksi, dan konsistensi pengumpulan data**. Kualitas sinyal dan profitabilitas tetap harus dibuktikan melalui forward evidence.
 
 ### Instalasi dasar di Ubuntu
 
