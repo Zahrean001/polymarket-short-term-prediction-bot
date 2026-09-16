@@ -4,6 +4,8 @@ dist/
 # Runtime paper state and generated evidence
 server/data-main-v3747/
 server/data-observer-v3747/
+releases/**/server/data-main-*/
+releases/**/server/data-observer-*/
 *.log
 *.tar.gz
 
@@ -13,4 +15,3 @@ server/data-observer-v3747/
 !.env.example
 .vscode/
 .idea/
-

@@ -20,6 +20,15 @@ Arsitektur utamanya:
 
 Main dan observer sengaja memakai directory data yang berbeda. Jangan menyalin state, signal, decision, atau settlement dari release lama karena akan mencemari forward validation.
 
+## Versi yang tersedia
+
+| Versi | Status | Mode | Lokasi |
+|---|---|---|---|
+| V374.7 | Aktif/default | Paper-only | Root repository |
+| V374.6 | Release sebelumnya | Paper-only | [`releases/v374.6/`](releases/v374.6/) |
+
+V374.6 dipertahankan sebagai release terisolasi agar source, dependency, konfigurasi, port, dan data directory-nya tidak bercampur dengan V374.7. Jalankan perintah dari folder release yang ingin digunakan, bukan dari root versi lain.
+
 ## Persyaratan
 
 - Node.js `^20.19.0` atau `>=22.12.0`

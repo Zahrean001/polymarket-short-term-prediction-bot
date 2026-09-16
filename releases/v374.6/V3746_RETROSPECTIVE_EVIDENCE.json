@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "v3746.retrospective-evidence.1",
+  "generatedAt": "2026-07-19T00:00:00.000Z",
+  "input": {
+    "file": "v374.5-run-data.zip",
+    "sha256": "03eb5101f498b37acd937b229600b0e3b4304585d1abb53b06035e3fff8fe819",
+    "sourceType": "user_supplied_runtime_archive",
+    "syntheticDataUsed": false,
+    "proxySettlementUsed": false,
+    "eligibility": "official_real_filled_unique_main_only"
+  },
+  "control": {
+    "policyId": "v3745-frozen-control",
+    "samples": 19,
+    "wins": 15,
+    "losses": 4,
+    "winRate": 78.947368,
+    "wilson95LowerPct": 56.665722,
+    "stakeUsd": 111.89300955,
+    "pnlUsd": 9.72575364,
+    "roiPct": 8.692012,
+    "profitFactor": 1.363059,
+    "startingEquityUsd": 40,
+    "endingEquityUsd": 49.72575364,
+    "maxDrawdownPct": 34.653197,
+    "observedThroughputTradesPerHour": 8.95
+  },
+  "shadowChallenger": {
+    "policyId": "v3746-correlation-direction-high-price-shadow",
+    "observerOnly": true,
+    "executionEligible": false,
+    "automaticPromotion": false,
+    "samples": 17,
+    "wins": 15,
+    "losses": 2,
+    "winRate": 88.235294,
+    "wilson95LowerPct": 65.663649,
+    "stakeUsd": 93.75954595,
+    "pnlUsd": 20.6611921,
+    "roiPct": 22.036361,
+    "profitFactor": 2.498383,
+    "endingEquityUsd": 60.6611921,
+    "maxDrawdownPct": 23.531384,
+    "coveragePct": 89.473684,
+    "netPnlDeltaUsd": 10.93543846,
+    "maxDrawdownDeltaPct": -11.121813
+  },
+  "shadowCounters": {
+    "directionLossTrigger": 3,
+    "exactCohortLossTrigger": 0,
+    "laneSCappedToLaneA": 3,
+    "correlatedReserveCapped": 2,
+    "highPriceWeakBookRejected": 1,
+    "belowActualMarketMinimumRejected": 1
+  },
+  "promotion": {
+    "eligible": false,
+    "failedChecks": [
+      "baseline_samples_below_200",
+      "coverage_below_90pct",
+      "wilson95_lower_below_70pct",
+      "rolling50_unavailable",
+      "three_completed_profitable_epochs_unavailable"
+    ],
+    "interpretation": "Retrospective same-run improvement is diagnostic evidence only and cannot modify main execution."
+  }
+}
